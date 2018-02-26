@@ -1,0 +1,36 @@
+<html>
+<body>
+<div><input type='button' value='Выбрать фильм' class='push'><span class='film'></span></div>
+<script>
+const filmBut = document.querySelector('.push');
+filmBut.addEventListener('click', selectFilm);
+let xhr = new XMLHttpRequest();
+let films = [];
+let doc, flag= false;
+const span = document.querySelector('.film');
+xhr.open('GET','https://raw.githubusercontent.com/gornoLis/testt-test/master/film',false);
+xhr.send();
+if (xhr.status != 200) {
+  alert(xhr.status + ': ' + xhr.statusText ); 
+} else {
+  doc = xhr.responseText.split('\n'); 
+}
+
+films = doc.filter(str=>{
+	if(str.includes('-старт')){
+		flag = true;
+	}
+	else if(str.includes('-финиш'))
+		flag = false;
+	else if(!(str.includes('--')) && flag){
+		return str;
+		}
+	});
+// console.log(films);
+function selectFilm(){
+	const randFilm =films[Math.floor(Math.random()*films.length)].toUpperCase();
+	span.innerText+='\n' + randFilm;
+}
+</script>
+</body>
+</html>
