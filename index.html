@@ -1,6 +1,18 @@
 <html>
 <body>
-<div><input type='button' value='Выбрать фильм' class='push'><span class='film'></span></div>
+<div class='choiceFilm'><input type='button' value='Выбрать фильм' class='push'><span class='film'></span></div>
+<style>
+.choiceFilm{
+text-align: center;
+margin-top: 100px;
+}
+.push{
+margin: 10px;
+}
+.film{
+color: red;
+}
+</style>
 <script>
 const filmBut = document.querySelector('.push');
 filmBut.addEventListener('click', selectFilm);
